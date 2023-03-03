@@ -1,4 +1,5 @@
 # Real-Time Deep Image Retouching Based on Learnt Semantics Dependent Global Transforms
+![AIRNet](fig/airnet.jpg)
 
 
 ## Dependencies and Installation
