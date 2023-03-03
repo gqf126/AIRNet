@@ -1,0 +1,43 @@
+{
+ "name": "Image_L_128_AB_64_Para_constaints_resnet_conv3_64_256_maxpool_para0_largelr_4polynomial_bn2_L0_1_ab_1_1_order1e2_testlab2_noconstantterm_epoch132000"
+  , "suffix": ""
+  , "model": "image_Y_UV_para_test"
+  , "scale": 1
+  , "HR_size": 256
+  , "gpu_ids": [0]
+
+  , "datasets": {
+    "test1": { // the 1st test dataset
+      "name": "tencent_video_test_resize2"
+      , "mode": "LRHR_Meta_Y_UV_test"
+      , "dataroot_HR": "/dockerdata/qifangao/data/airnet/HR_path"
+      , "dataroot_LR": "/dockerdata/qifangao/data/airnet/LR_path_resize"
+      , "n_workers": 16
+      , "batch_size": 32
+    }
+
+  }
+
+   , "path": {
+    "root": "/dockerdata/qifangao/results/airnet/"
+    , "pretrain_model_G_Y": "pretrained_model/132000_G_Y_s.pth" 
+    , "pretrain_model_G_UV":"pretrained_model/132000_G_UV_s.pth" 
+  }
+
+  , "network_G": {
+     "which_model_G_Y": "ResNet_Y"
+    , "G_Y_nf": 64
+    , "G_Y_nb": 2
+    , "G_Y_avg": 4
+    , "G_Y_in_nc": 3
+    , "G_Y_out_nc": 4
+    , "G_Y_norm_type": "batch"
+    ,"which_model_G_UV": "ResNet_UV"
+    , "G_UV_nf": 64
+    , "G_UV_nb": 2
+    , "G_UV_avg": 2
+    , "G_UV_in_nc": 2
+    , "G_UV_out_nc": 6
+    , "G_UV_norm_type": "batch"
+  }
+}

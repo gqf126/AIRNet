@@ -1,0 +1,66 @@
+// Not total the same as SRResNet in <Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network>
+// With 16 Residual blocks w/o BN
+{
+  "name": "001_resnets4_srgb" //  please remove "debug_" during training
+  , "use_tb_logger": true
+  , "model":"sr"
+  , "scale": 1
+  , "gpu_ids": [0,1]
+
+  , "datasets": {
+    "train": {
+      "name": "DIV2K"
+      , "mode": "LRHR"
+      , "dataroot_HR": "/mnt/sdc1/lsl/sftnew/database/train/img"
+      , "dataroot_LR": "/mnt/sdc1/lsl/sftnew/database/train/input"
+      , "subset_file": null
+      , "use_shuffle": true
+      , "n_workers": 16
+      , "batch_size": 32
+      , "HR_size": 256 // 128 | 192
+      , "use_flip": true
+      , "use_rot": true
+    }
+    , "val": {
+      "name": "val_set5"
+      , "mode": "LRHR"
+      , "dataroot_HR": "/mnt/sdc1/lsl/sftnew/database/val/img"
+      , "dataroot_LR": "/mnt/sdc1/lsl/sftnew/database/val/input"
+    }
+  }
+
+  , "path": {
+    "root": "/mnt/sdc1/lsl/sftnew"
+    // , "resume_state": "../experiments/debug_001_RRDB_PSNR_x4_DIV2K/training_state/200.state"
+    , "pretrain_model_G": null
+  }
+
+  , "network_G": {
+    "which_model_G": "sr_resnet" // RRDB_net | sr_resnet
+    , "norm_type": null
+    , "mode": "CNA"
+    , "nf": 64
+    , "nb": 16
+    , "in_nc": 3
+    , "out_nc": 3
+  }
+
+  , "train": {
+    "lr_G": 2e-4
+    , "lr_scheme": "MultiStepLR"
+    , "lr_steps": [2000, 4000, 6000, 8000]
+    , "lr_gamma": 0.5
+
+    , "pixel_criterion": "l1"
+    , "pixel_weight": 1.0
+    , "val_freq": 1000
+
+    , "manual_seed": 0
+    , "niter": 4e4
+  }
+
+  , "logger": {
+    "print_freq": 20
+    , "save_checkpoint_freq": 5e1
+  }
+}
