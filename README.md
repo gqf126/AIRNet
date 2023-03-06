@@ -1,6 +1,9 @@
 # AIRNet
 Code for TIP 2021 paper: Real-Time Deep Image Retouching Based on Learnt Semantics Dependent Global Transforms
+
+
 ![AIRNet](fig/airnet.jpg)
+
 
 
 ## Dependencies and Installation
@@ -20,7 +23,7 @@ Code for TIP 2021 paper: Real-Time Deep Image Retouching Based on Learnt Semanti
 We also recommand to use the preprocessed datasets  [MIT-Adobe FiveK preprocessed dataset](https://drive.google.com/drive/folders/1qrGLFzW7RBlBO1FqgrLPrq9p2_p11ZFs?usp=sharing) (kindly shared by Jingwen He, author of CSRNet)
 
 
-## How to Test
+## Inference
 1. Modify the configuration file [`options/test/test_Meta_Y_UV_Para.json`](codes/options/test/test_Enhance.yml). 
 2. Run command:
 ```
